@@ -1,5 +1,6 @@
 package com.example.dynamiforum2;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -7,6 +8,7 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -30,11 +32,14 @@ public class DiscussionActivity extends Activity {
 	SimpleDateFormat heure;
 	String dateDisc;
 	String heureDisc;
+	Operations o;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_discussion);
+		
+		Operations o = new Operations(this);
 		
 		//titre = (TextView) findViewById(R.id.textTitreDiscussion);
 		listeDiscussions = (ListView) findViewById(R.id.listDiscussDiscussion);
@@ -76,7 +81,15 @@ public class DiscussionActivity extends Activity {
 		public void onClick(View v) {
 			if(v.getId()==R.id.buttonAjouterDiscussion)
 			{
+				//String text, String date, String heure, int id_createur, int id_sujet
+				String dateString = date.format(date);
+				String heureString = heure.format(heure);
+				
+				p = new Post(ajoutDiscussion.getText().toString(), dateString, heureString,);
+				
 				// ajouter son post au sujet choisi
+				o.ouvrirBD();
+				o.ajouterPost(p);
 				
 			}
 			else // retour au choix des sujets

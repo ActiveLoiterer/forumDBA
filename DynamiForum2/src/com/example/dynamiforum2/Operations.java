@@ -23,7 +23,7 @@ public class Operations {
 	{
 		ContentValues cv = new ContentValues();
 		cv.put("nom", u.getNom());
-		cv.put("pssword", u.getPassword());
+		cv.put("password", u.getPassword());
 		database.insert("usager", null, cv);		
 	}
 	public void ajouterSujet(Sujet s)
@@ -34,5 +34,25 @@ public class Operations {
 		cv.put("date_dernier", s.getDate_dernier());
 		cv.put("id_createur", s.getId_createur());
 		database.insert("sujet", null, cv);
+	}
+	
+	public void ajouterPost(Post p)
+	{
+		//Il faut ajouter le post et modifier les valeurs du sujet correspondant dans la BD
+		ContentValues cv = new ContentValues();
+		cv.put("text", p.getText());
+		cv.put("date", p.getDate());
+		cv.put("heure", p.getHeure());
+		cv.put("id_createur", p.getId_createur());
+		cv.put("id_sujet", p.getId_sujet());
+		database.insert("post", null, cv);
+		
+		updateSujet(p);
+	}
+	
+	public void updateSujet(Post p)
+	{
+		//nb_msg INTEGER,date_dernier
+		database.execSQL("UPDATE sujet SET nb_msg = nb_msg + 1, date_dernier = ?, WHERE _id = ?", new String [] {p.getDate(), String.valueOf((p.getId_sujet() )) });
 	}
 }

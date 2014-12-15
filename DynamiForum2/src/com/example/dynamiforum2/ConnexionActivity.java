@@ -32,6 +32,7 @@ public class ConnexionActivity extends Activity {
 			
 			// passser à la liste des sujets
 			Intent i = new Intent(ConnexionActivity.this, SujetsActivity.class);
+			i.putExtra("nom", nom.toString());
 			startActivity(i);
 		}
 		
