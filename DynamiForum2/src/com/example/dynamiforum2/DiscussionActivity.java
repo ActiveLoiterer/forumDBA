@@ -85,11 +85,12 @@ public class DiscussionActivity extends Activity {
 				String dateString = date.format(date);
 				String heureString = heure.format(heure);
 				
-				p = new Post(ajoutDiscussion.getText().toString(), dateString, heureString,);
+				Post p = new Post(ajoutDiscussion.getText().toString(), dateString, heureString,0,0);
 				
 				// ajouter son post au sujet choisi
 				o.ouvrirBD();
 				o.ajouterPost(p);
+				o.fermerBD();
 				
 			}
 			else // retour au choix des sujets

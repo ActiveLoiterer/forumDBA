@@ -65,9 +65,9 @@ public class SujetsActivity extends Activity {
 			Intent current = getIntent();
 			String nom = current.getStringExtra("nom");
 			//Faut aller chercher le nom du sujet...
-			//String sujet = sujetSelectionne.
+			//int id_sujet = ...
 			
-			//Ensuite il faut putExtra le nom de l'usager et le Sujet, pour pouvoir créer les posts
+			//Ensuite il faut putExtra le nom de l'usager et le id Sujet, pour pouvoir créer les posts
 			
 			startActivity(i);
 		}
